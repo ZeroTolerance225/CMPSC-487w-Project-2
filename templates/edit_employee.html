@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background-color: BlanchedAlmond;
+    }
+</style>
+<div class="container mt-5">
+    <h2 class="text-center">Edit Employee {{ form.name.value }}</h2> <!-- Display the employee's name in the header -->
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="{{ form.name.id_for_label }}">Name:</label>
+            <input type="text" class="form-control" id="{{ form.name.id_for_label }}" value="{{ form.name.value }}" name="{{ form.name.name }}">
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.description.id_for_label }}">Description:</label>
+            <textarea class="form-control" id="{{ form.description.id_for_label }}" name="{{ form.description.name }}">{{ form.description.value }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <p>Image: Currently: employee_images/Angelica_Kauffman.jpg</p>
+            <label for="{{ form.image.id_for_label }}">Change:</label>
+            <input type="file" class="form-control-file" id="{{ form.image.id_for_label }}" name="{{ form.image.name }}">
+        </div>
+
+        <button type="submit" class="btn" style="background-color: darkgray; color: white;">Update Employee</button>
+
+    </form>
+</div>
+{% endblock %}
